@@ -1,0 +1,7 @@
+name: Logger
+version: '${version}'
+main: com.github.crafttogether.logger.Logger
+api-version: 1.18
+prefix: Log
+authors: [ Marian ]
+description: Logs everything!
