@@ -2,6 +2,7 @@ package com.github.crafttogether.logger
 
 import com.destroystokyo.paper.event.block.TNTPrimeEvent
 import org.bukkit.Material
+import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -48,6 +49,18 @@ class Listener : Listener {
 
     @EventHandler
     fun onEntityHit(event: EntityDamageByEntityEvent) {
+        val entitiesToLog = mutableListOf(
+            EntityType.VILLAGER,
+            EntityType.PLAYER,
+
+            EntityType.MINECART,
+            EntityType.MINECART_CHEST,
+            EntityType.MINECART_FURNACE,
+            EntityType.MINECART_HOPPER,
+            EntityType.MINECART_TNT,
+        )
+        if (!entitiesToLog.contains(event.entityType)) return
+
         val entity = event.entity
         if (entity is LivingEntity) {
             if (entity.health - event.damage <= 0.0) {
