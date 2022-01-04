@@ -1,6 +1,7 @@
 package com.github.crafttogether.logger;
 
 import okhttp3.*;
+import org.bukkit.Bukkit;
 import org.json.JSONObject;
 
 import java.awt.*;
@@ -76,7 +77,11 @@ public class Webhook {
                 .build();
 
         final Call call = client.newCall(request); // Create call
-        call.execute(); // Execute call
+        try {
+            call.execute(); // Execute call
+        } catch (Exception e) {
+            Bukkit.getConsoleSender().sendMessage("Failed to send logging event");
+        }
     }
 
     /**
